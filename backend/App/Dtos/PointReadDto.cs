@@ -15,7 +15,7 @@ namespace backend.Dtos
         public string City { get; set; }
 
 
-        public string Items { get; set; }
+        public string[] Items { get; set; }
 
 
         public string Name { get; set; }

@@ -10,6 +10,7 @@ import eletronicos from '../../assets/images/eletronicos.svg'
 import oleo from '../../assets/images/oleo.svg'
 import papeis from '../../assets/images/papeis.svg'
 import organicos from '../../assets/images/organicos.svg'
+import api from '../../services/api'
 
 const CreatePoint = () => {
   const[form, setForm] = useState({
@@ -25,8 +26,6 @@ const CreatePoint = () => {
   const[ufId, setUfId] = useState()
   const[selectedItems, setSelectedItems] = useState([])
 
-  
-  
   useEffect(()=>{
     async function handleFetchUf(){
       const { data } = await  ufApi.get('')
@@ -75,10 +74,18 @@ const CreatePoint = () => {
 
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    const config = {
+      headers:{
+         'accept': '*',
+         'Accept-Language': 'en-US,en;q=0.8',
+         'Content-Type': `application/json;`
+      }
+    }
     async function submit(){
-    console.log(form)
+      await api.post('/', config)
+      console.log('ok')
     }
     submit()
   } 
@@ -148,27 +155,27 @@ const CreatePoint = () => {
           <fieldset>
             <legend><h2>Ítens de coleta</h2></legend>
             <div className='grid'>
-              <li data-id='1' onClick={handleSelection}> 
+              <li data-id='Lâmpadas' onClick={handleSelection}> 
                 <img src={lampadas} alt="lampadas"/>
                 <span>Lâmpadas</span>
               </li>
-              <li data-id='2' onClick={handleSelection}>
+              <li data-id='Pilhas e Baterias' onClick={handleSelection}>
                 <img src={bateria} alt="PilhaseBaterias"/>
                 <span>Pilhas e Baterias</span>
               </li>
-              <li data-id='3' onClick={handleSelection}>
+              <li data-id='Papeis e Papelão' onClick={handleSelection}>
                 <img src={papeis} alt="PapeisEPapelao"/>
                 <span>Papeis e Papelão</span>
               </li>
-              <li data-id='4' onClick={handleSelection}>
+              <li data-id='Resíduos Eletrônicos' onClick={handleSelection}>
                 <img src={eletronicos} alt="eletronicos"/>
                 <span>Resíduos Eletrônicos</span>
               </li>
-              <li data-id='5' onClick={handleSelection}>
+              <li data-id='Resíduos Orgânicos' onClick={handleSelection}>
                 <img src={organicos} alt="organicos"/>
                 <span>Resíduos Orgânicos</span>
               </li>
-              <li data-id='6' onClick={handleSelection}>
+              <li data-id='Óleo de Cozinha' onClick={handleSelection}>
                 <img src={oleo} alt=" "/>
                 <span>Óleo de Cozinha</span>
               </li>

@@ -20,7 +20,7 @@ namespace backend.Dtos
 
         [Required]
 
-        public string Items { get; set; }
+        public string[] Items { get; set; }
 
 
         [Required]

@@ -41,7 +41,7 @@ namespace backend.Controllers
             var pointItem = _repository.GetPointById(id);
             if (pointItem != null)
             {
-                return Ok(_mapper.Map<IEnumerable<PointReadDto>>(pointItem));
+                return Ok(_mapper.Map<PointReadDto>(pointItem));
             }
             return NotFound();
         }

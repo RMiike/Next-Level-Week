@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using backend.Profiles;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +38,7 @@ namespace backend
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new UserProfileMapper());
+                mc.AddProfile(new PointProfileMapper());
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

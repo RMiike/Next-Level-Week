@@ -29,7 +29,7 @@ This project was developed at Next Level Week - RocketSeat with the following te
 -  [react-icons](https://react-icons.github.io/react-icons/)
 -  [VS Code][vc] with [EditorConfig][vceditconfig]
 
-
+AutoMapper
 SqlServer
 Microsoft.EntityFrameworkCore
 Microsoft.EntityFrameworkCore.Design

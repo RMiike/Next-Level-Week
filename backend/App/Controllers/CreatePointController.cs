@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using backend.Dtos;
 using Dominio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,39 +16,46 @@ namespace backend.Controllers
     public class CreatePointController : ControllerBase
     {
         private readonly IRepo _repository;
+        private readonly IMapper _mapper;
 
-        public CreatePointController(IRepo repository)
+        public CreatePointController(
+            IRepo repository,
+            IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
+
         }
         // GET: api/CreatePoint
         [HttpGet]
-        public ActionResult<IEnumerable<Point>> Get()
+        public ActionResult<IEnumerable<PointReadDto>> Get()
         {
-            var commandItems = _repository.GetAll();
-            return Ok(commandItems);
+            var points = _repository.GetAll();
+            return Ok(_mapper.Map<IEnumerable<PointReadDto>>(points));
         }
 
         // GET: api/CreatePoint/5
         [HttpGet("{id}", Name = "GetPointById")]
-        public ActionResult<Point> GetPointById(int id)
+        public ActionResult<PointReadDto> GetPointById(int id)
         {
             var pointItem = _repository.GetPointById(id);
             if (pointItem != null)
             {
-                return Ok(pointItem);
+                return Ok(_mapper.Map<IEnumerable<PointReadDto>>(pointItem));
             }
             return NotFound();
         }
 
         // POST: api/CreatePoint
         [HttpPost]
-        public ActionResult<Point> CreatePoint(Point point)
+        public ActionResult<PointReadDto> CreatePoint(PointCreateDto point)
         {
-            _repository.CreatePoint(point);
+            var pointModel = _mapper.Map<Point>(point);
+            _repository.CreatePoint(pointModel);
             _repository.SaveChanges();
+            var pointReadDto = _mapper.Map<PointReadDto>(pointModel);
 
-            return NoContent();
+            return CreatedAtRoute(nameof(GetPointById), new { Id = pointReadDto.Id }, pointReadDto);
         }
 
         //// PUT: api/CreatePoint/5

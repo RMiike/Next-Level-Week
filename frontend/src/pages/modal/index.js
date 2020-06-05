@@ -1,9 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
 import { BsX, BsSearch } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import axios from '../../services/api'
 
 const Modal = ({hide, handleClose}) => {
+  const[state,setState]=useState()
+
+  function handleChange(e){
+    setState(e.target.value)
+  }
+  async function handleSubmit(e){
+    e.preventDefault()
+    try{
+      const resp = await axios.get(`/${state}`)
+
+      if(resp){
+        console.log(resp)
+      }
+    } catch (e){
+      alert(e)
+    }
+  }
   return (
   <ModalContainer hide={hide}>
       <div>
@@ -11,12 +28,12 @@ const Modal = ({hide, handleClose}) => {
           <h1>Pontos de coleta</h1>
           <BsX size={20} color='#fff' onClick={handleClose} />
         </div>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <label htmlFor="search">Cidade ou Estado</label>
           <div className="search field">
-            <input type="text" name='search' placeholder='Pesquise por Cidade ou Estado'/>
-            <button>
-            <Link to='/search'>  <BsSearch size={20} color='#FFF'/></Link> 
+            <input type="text" name='search' placeholder='Pesquise por Estado'  onChange={handleChange}/>
+            <button type='submit'>
+            <BsSearch size={20} color='#FFF'/>
             </button>
           </div>
         </form>

@@ -11,7 +11,18 @@ namespace Repositorio
         {
 
         }
-   
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Point>()
+            .Property(e => e.Items)
+            .HasConversion(
+                v => string.Join(',', v),
+                v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
+
+        }
         public DbSet<Point> Points { get; set; }
     }
 }

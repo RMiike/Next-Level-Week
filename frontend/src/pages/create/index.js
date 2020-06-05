@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { BsBoxArrowInLeft } from 'react-icons/bs'
 import Logo from '../../assets/images/logo.svg'
@@ -13,6 +14,7 @@ import organicos from '../../assets/images/organicos.svg'
 import api from '../../services/api'
 
 const CreatePoint = () => {
+  const history = useHistory()
   const[form, setForm] = useState({
     adress: "",
     adress2: "",
@@ -77,17 +79,24 @@ const CreatePoint = () => {
   async function handleSubmit(e) {
     e.preventDefault()
     const config = {
+    
       headers:{
-         'accept': '*',
+         'accept': '*/*',
          'Accept-Language': 'en-US,en;q=0.8',
          'Content-Type': `application/json;`
       }
     }
+    
+    try {
     async function submit(){
-      await api.post('/', config)
-      console.log('ok')
+      
+        await api.post('/', form, config)
+        history.replace('/search')
+      }
+      submit()
+    } catch (err){
+      alert(err)
     }
-    submit()
   } 
   
   

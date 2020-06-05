@@ -41,11 +41,15 @@ namespace Repositorio
             return _context.Points.ToList();
         }
 
-        public Point GetPointById(int id)
+        public Point GetPointByCity(string uf)
         {
-            return _context.Points.FirstOrDefault(p => p.Id == id);
+            return _context.Points.FirstOrDefault(p => p.Uf == uf);
         }
 
+        public Point GetPointById(int uf)
+        {
+            return _context.Points.FirstOrDefault(p => p.Id == uf);
+        }
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

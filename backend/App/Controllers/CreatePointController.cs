@@ -35,10 +35,10 @@ namespace backend.Controllers
         }
 
         // GET: api/CreatePoint/5
-        [HttpGet("{id}", Name = "GetPointById")]
-        public ActionResult<PointReadDto> GetPointById(int id)
+        [HttpGet("{Uf}", Name = "GetPointByCity")]
+        public ActionResult<PointReadDto> GetPointByCity(string uf)
         {
-            var pointItem = _repository.GetPointById(id);
+            var pointItem = _repository.GetPointByCity(uf);
             if (pointItem != null)
             {
                 return Ok(_mapper.Map<PointReadDto>(pointItem));
@@ -55,7 +55,7 @@ namespace backend.Controllers
             _repository.SaveChanges();
             var pointReadDto = _mapper.Map<PointReadDto>(pointModel);
 
-            return CreatedAtRoute(nameof(GetPointById), new { Id = pointReadDto.Id }, pointReadDto);
+            return CreatedAtRoute(nameof(GetPointByCity), new { Id = pointReadDto.Id }, pointReadDto);
         }
 
         //// PUT: api/CreatePoint/5

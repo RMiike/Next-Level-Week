@@ -1,12 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
 import { BsBoxArrowInLeft } from 'react-icons/bs'
 import Logo from '../../assets/images/logo.svg'
-import papel from '../../assets/images/papel.jpg'
-import aluminio from '../../assets/images/aluminio.jpg'
 import styled from 'styled-components'
+import axios from '../../services/api'
+import Cards from './card'
 
 const CreatePoint = () => {
+  const[data,setData] = useState({})
+  const[loading,setLoading] = useState(true)
+
+  useEffect(()=>{
+    async function handleFetch(){
+      setLoading(true)
+      const res = await axios.get('/') 
+      setData(res.data)
+      setLoading(false)
+    }
+    handleFetch()
+  },[])
+  
+  
+
+
   return (
     <SearchResults>
       <div>
@@ -16,80 +32,9 @@ const CreatePoint = () => {
         </header>
         <div className='main'>
           <h4>
-            <strong> 2 pontos </strong> encontrados
+            <strong> {data.length} pontos </strong> encontrados
           </h4>
-          <div className="cards">
-            <div className="card">
-              <img src={aluminio} alt="colectoria"/>
-              <h1>Colectoria</h1>
-              <h3>Resíduos Eletrônicos, Lâmpadas</h3>
-              <p>
-                Rio do Sul, Santa Catarina <br/>
-                Guilherme Gembala, Jardim América <br/>
-                 Número 200
-              </p>
-            </div>
-            <div className="card">
-              <img src={papel} alt="PaperSider"/>
-              <h1>Papersider</h1>
-              <h3>Papéis e Papelão</h3>
-              <p>
-                Rio do Sul, Santa Catarina <br/>
-                Guilherme Gembala, Jardim América <br/>
-                 Número 200
-              </p>
-            </div>
-            <div className="card">
-              <img src={papel} alt="PaperSider"/>
-              <h1>Papersider</h1>
-              <h3>Papéis e Papelão</h3>
-              <p>
-                Rio do Sul, Santa Catarina <br/>
-                Guilherme Gembala, Jardim América <br/>
-                 Número 200
-              </p>
-            </div>
-            <div className="card">
-              <img src={papel} alt="PaperSider"/>
-              <h1>Papersider</h1>
-              <h3>Papéis e Papelão</h3>
-              <p>
-                Rio do Sul, Santa Catarina <br/>
-                Guilherme Gembala, Jardim América <br/>
-                 Número 200
-              </p>
-            </div>
-            <div className="card">
-              <img src={papel} alt="PaperSider"/>
-              <h1>Papersider</h1>
-              <h3>Papéis e Papelão</h3>
-              <p>
-                Rio do Sul, Santa Catarina <br/>
-                Guilherme Gembala, Jardim América <br/>
-                 Número 200
-              </p>
-            </div>
-            <div className="card">
-              <img src={papel} alt="PaperSider"/>
-              <h1>Papersider</h1>
-              <h3>Papéis e Papelão</h3>
-              <p>
-                Rio do Sul, Santa Catarina <br/>
-                Guilherme Gembala, Jardim América <br/>
-                 Número 200
-              </p>
-            </div>
-            <div className="card">
-              <img src={papel} alt="PaperSider"/>
-              <h1>Papersider</h1>
-              <h3>Papéis e Papelão</h3>
-              <p>
-                Rio do Sul, Santa Catarina <br/>
-                Guilherme Gembala, Jardim América <br/>
-                 Número 200
-              </p>
-            </div>
-          </div>
+          <Cards data={data} loading={loading}/>
         </div>
       </div>
     </SearchResults>

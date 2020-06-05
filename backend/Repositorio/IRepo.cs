@@ -9,6 +9,7 @@ namespace Repositorio
     {
         bool SaveChanges();
         IEnumerable<Point> GetAll();
+        Point GetPointByCity(string uf);
         Point GetPointById(int id);
 
         void CreatePoint(Point point);

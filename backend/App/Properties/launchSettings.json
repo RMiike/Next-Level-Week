@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "api/createpoint",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

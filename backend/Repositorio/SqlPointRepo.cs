@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data
+namespace Repositorio
 {
-    public class SqlRepo
+    public class SqlPointRepo
     {
     }
 }

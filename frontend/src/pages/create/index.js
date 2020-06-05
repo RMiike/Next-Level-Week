@@ -12,11 +12,19 @@ import papeis from '../../assets/images/papeis.svg'
 import organicos from '../../assets/images/organicos.svg'
 
 const CreatePoint = () => {
-  const[form, setForm] = useState({})
+  const[form, setForm] = useState({
+    adress: "",
+    adress2: "",
+    city: "",
+    items:[],
+    name: "",
+    uf: ""
+  })
   const[uf, setUf] = useState([])
   const[municipios,setMunicipios] = useState([])
   const[ufId, setUfId] = useState()
   const[selectedItems, setSelectedItems] = useState([])
+
   
   
   useEffect(()=>{
@@ -36,11 +44,12 @@ const CreatePoint = () => {
   },[ufId])
 
   useEffect(()=>{
-    setForm({items:selectedItems})
+    let old = form
+    old.items = selectedItems
+    setForm(old)
   },[selectedItems])
 
   function handleChangeForm(e){
-    console.log('handlechange')
     let newForm = form
     form[e.target.name] = e.target.value
     if(e.target.name === 'uf' && e.target.value){
@@ -63,15 +72,16 @@ const CreatePoint = () => {
     }
     setSelectedItems([...supSelectedItems,itemId])
   }
-  const handleSubmit = useCallback((e) => {
 
+
+
+  function handleSubmit(e) {
     e.preventDefault()
-
     async function submit(){
-      console.log(form)
+    console.log(form)
     }
     submit()
-  } ,[form])
+  } 
   
   
   return (

@@ -7,7 +7,7 @@
 </h1>
 
 <h4 align="center">
-  App with React-js and Node-js.
+  App with React-js and Asp.Net Core.
 </h4>
 
 
@@ -28,6 +28,15 @@ This project was developed at Next Level Week - RocketSeat with the following te
 -  [styled-components](https://www.styled-components.com/)
 -  [react-icons](https://react-icons.github.io/react-icons/)
 -  [VS Code][vc] with [EditorConfig][vceditconfig]
+
+
+
+Microsoft.EntityFrameworkCore
+Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.SqlServer
+Microsoft.VisualStudio.Web.CodeGeneration.Design
+- [Visual Studio 2019][vs2019]
+
 
 ## :information_source: How To Use
 
@@ -60,3 +69,4 @@ Made with ♥ by Renato Miike :wave: [Get in touch!](https://www.linkedin.com/in
 [vc]: https://code.visualstudio.com/
 [vceditconfig]: https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
 [vceslint]: https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+[vs2019]: https://docs.microsoft.com/en-us/visualstudio/windows/?view=vs-2019

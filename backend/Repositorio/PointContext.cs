@@ -1,10 +1,7 @@
-﻿using Domain;
+﻿using Dominio;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Data
+namespace Repositorio
 {
     public class Context : DbContext
     {

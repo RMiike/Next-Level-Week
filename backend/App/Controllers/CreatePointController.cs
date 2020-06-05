@@ -27,18 +27,27 @@ namespace backend.Controllers
             return Ok(commandItems);
         }
 
-        //// GET: api/CreatePoint/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        // GET: api/CreatePoint/5
+        [HttpGet("{id}", Name = "GetPointById")]
+        public ActionResult<Point> GetPointById(int id)
+        {
+            var pointItem = _repository.GetPointById(id);
+            if (pointItem != null)
+            {
+                return Ok(pointItem);
+            }
+            return NotFound();
+        }
 
-        //// POST: api/CreatePoint
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        // POST: api/CreatePoint
+        [HttpPost]
+        public ActionResult<Point> CreatePoint(Point point)
+        {
+            _repository.CreatePoint(point);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
 
         //// PUT: api/CreatePoint/5
         //[HttpPut("{id}")]
@@ -46,10 +55,19 @@ namespace backend.Controllers
         //{
         //}
 
-        //// DELETE: api/ApiWithActions/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var pointWillDelete = _repository.GetPointById(id);
+
+            if (pointWillDelete == null)
+            {
+                return NotFound();
+            }
+            _repository.DeletePoind(pointWillDelete);
+            _repository.SaveChanges();
+            return NoContent();
+        }
     }
 }

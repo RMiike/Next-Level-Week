@@ -7,13 +7,14 @@ namespace Repositorio
 {
     public interface IRepo
     {
+        bool SaveChanges();
         IEnumerable<Point> GetAll();
-        Point GetCommandById(int id);
+        Point GetPointById(int id);
 
-        void CreateCommand(Point point);
+        void CreatePoint(Point point);
 
-        void UpdateCommand(Point point);
+        void UpdatePoint(Point point);
 
-        void DeleteCommand(Point point);
+        void DeletePoind(Point point);
     }
 }

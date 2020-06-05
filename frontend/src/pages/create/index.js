@@ -96,10 +96,17 @@ const CreatePoint = () => {
           <h1>Cadastro do ponto de coleta</h1>
 
           <fieldset>
+
             <legend><h2>Dados da entidade</h2></legend>
+          <div className='field-group'>
             <div className='field'>
               <label htmlFor="name">Nome da entidade</label>
               <input type="text" name='name' onChange={handleChangeForm}/>
+              </div>
+              <div className='field'>
+              <label htmlFor="name">Imagem da Entidade</label>
+              <input type="url" placeholder='http://' name='url' onChange={handleChangeForm}/>
+              </div>
             </div>
             <div className='field-group'>
               <div className='field'>
@@ -162,7 +169,7 @@ const CreatePoint = () => {
                 <span>Resíduos Orgânicos</span>
               </li>
               <li data-id='6' onClick={handleSelection}>
-                <img src={oleo} alt="oleo"/>
+                <img src={oleo} alt=" "/>
                 <span>Óleo de Cozinha</span>
               </li>
             </div>

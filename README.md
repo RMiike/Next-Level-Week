@@ -30,7 +30,7 @@ This project was developed at Next Level Week - RocketSeat with the following te
 -  [VS Code][vc] with [EditorConfig][vceditconfig]
 
 
-
+SqlServer
 Microsoft.EntityFrameworkCore
 Microsoft.EntityFrameworkCore.Design
 Microsoft.EntityFrameworkCore.SqlServer

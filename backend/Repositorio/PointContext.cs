@@ -1,16 +1,17 @@
 ﻿using Dominio;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Repositorio
 {
-    public class Context : DbContext
+    public class PointContext : DbContext
     {
-        public Context(DbContextOptions<Context> opt)
+        public PointContext(DbContextOptions<PointContext> opt)
             : base(opt)
         {
 
         }
-
+   
         public DbSet<Point> Points { get; set; }
     }
 }

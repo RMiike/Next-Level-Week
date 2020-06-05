@@ -7,6 +7,8 @@ namespace Dominio
 {
     public class Point
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string Adress { get; set; }
         [Required]
@@ -15,16 +17,23 @@ namespace Dominio
         [Required]
 
         public string City { get; set; }
+
+
         [Required]
 
-        public Items[] Items { get; set; }
+        public string Items { get; set; }
+
+
         [Required]
 
         public string Name { get; set; }
+
+        [Required]
+
+        public string Url { get; set; }
         [Required]
 
         public string Uf { get; set; }
-
 
     }
 }

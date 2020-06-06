@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import styled from 'styled-components'
 import { BsX, BsSearch } from 'react-icons/bs'
+import { useHistory } from 'react-router-dom'
 import axios from '../../services/api'
 
 const Modal = ({hide, handleClose}) => {
   const[state,setState]=useState()
-
+  const history = useHistory()
   function handleChange(e){
     setState(e.target.value)
   }
@@ -15,10 +16,12 @@ const Modal = ({hide, handleClose}) => {
       const resp = await axios.get(`/${state}`)
 
       if(resp){
-        console.log(resp)
+        history.replace(`search/${state}`)
+        return
       }
+      return alert('Not found!')
     } catch (e){
-      alert(e)
+      alert("Not found!")
     }
   }
   return (

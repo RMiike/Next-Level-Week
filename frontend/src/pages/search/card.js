@@ -1,15 +1,21 @@
 import React from 'react';
-import { Spinner } from 'react-activity'
-import styled from 'styled-components'
 
-const Cards = ({ data, loading }) => {
+const Cards = ({ data }) => {
 
-
-  if(loading){
+  if(data.length === undefined){
     return (
-      <DotContainer>
-        <Spinner color='#222' size={100} />
-      </DotContainer>
+      <div className="cards">
+          <div className="card" key={data.id}>
+            <img src={data.url} alt="colectoria" />
+            <h1>{data.name}</h1>
+           <h3>{data.items}</h3>
+            <p>
+              {data.city}, {data.uf} <br />
+            {data.adress}  <br />
+            {data.adress2}
+          </p>
+          </div>
+    </div>
     )
   }
 
@@ -35,13 +41,3 @@ const Cards = ({ data, loading }) => {
 
 export default Cards;
 
-
-const DotContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  height: 90vh;
-  max-width: 1820px;
-  background: #EEEEEE;
-`

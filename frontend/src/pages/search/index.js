@@ -2,18 +2,19 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom'
 import { BsBoxArrowInLeft } from 'react-icons/bs'
 import Logo from '../../assets/images/logo.svg'
+import { Spinner } from 'react-activity'
 import styled from 'styled-components'
 import axios from '../../services/api'
 import Cards from './card'
 
-const CreatePoint = () => {
+const CreatePoint = ({match}) => {
   const[data,setData] = useState({})
   const[loading,setLoading] = useState(true)
 
   useEffect(()=>{
     async function handleFetch(){
       setLoading(true)
-      const res = await axios.get('/') 
+      const res = await axios.get(`/${match.params.state}`) 
       setData(res.data)
       setLoading(false)
     }
@@ -21,7 +22,13 @@ const CreatePoint = () => {
   },[])
   
   
-
+  if(loading){
+    return (
+      <DotContainer>
+        <Spinner color='#222' size={100} />
+      </DotContainer>
+    )
+  }
 
   return (
     <SearchResults>
@@ -137,3 +144,13 @@ const SearchResults = styled.div`
   }
 `
 
+
+const DotContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height: 90vh;
+  max-width: 1820px;
+  background: #EEEEEE;
+  `
